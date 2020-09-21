@@ -1,3 +1,6 @@
+====> Before you do anything first Clone the MarioNodeJs and type *set project_jwtPrivateKey=type_yourPrivateKey* then run *nodemon index.js".
+====> Clone this react & reduxjs/toolkit
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
