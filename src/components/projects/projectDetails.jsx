@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { loadProjects } from "../../store/projects";
+import moment from "moment";
 
 const ProjectDetails = ({ project }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const ProjectDetails = ({ project }) => {
                   <div>
                     Posted by {p.authorFirstName} {p.authorLastName}
                   </div>
-                  <div>2nd September, 2am</div>
+                  <div>{moment(p.createdAt.toString()).calendar()}</div>
                 </div>
               </div>
             </div>

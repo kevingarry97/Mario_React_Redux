@@ -17,7 +17,7 @@ class CreateProject extends Form {
 
   doSubmit = () => {
     this.props.createProject(this.state.account);
-    console.log(this.state.account);
+    this.props.history.push("/");
   };
 
   render() {

@@ -24,7 +24,6 @@ const slice = createSlice({
       user.isLoading = true;
     },
     successRegister: (user, action) => {
-      localStorage.setItem("token", action.payload.token);
       user.isAuthenticated = true;
       user.isLoading = true;
     },
