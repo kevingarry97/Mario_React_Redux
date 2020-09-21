@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import { Route, Switch } from "react-router-dom";
+import signIn from "./components/auth/signIn";
+import SignOut from "./components/auth/signOut";
+import DashBoard from "./components/dashboard/dashboard";
+import NavBar from "./components/layout/navbar";
+import CreateProject from "./components/projects/createProject";
+import ProjectDetails from "./components/projects/projectDetails";
+import logOut from "./components/layout/logOut";
+import auth from "./services/authService";
+import ProtectedRoute from "./components/common/protextedRoute";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  state = {};
+
+  componentDidMount() {
+    const user = auth.getCurrentUser();
+    this.setState({ user });
+  }
+
+  render() {
+    const { user } = this.state;
+    return (
+      <div className="App">
+        <NavBar user={user} />
+        <Switch>
+          <ProtectedRoute path="/project/:id" component={ProjectDetails} />
+          <ProtectedRoute path="/create" component={CreateProject} />
+          <Route path="/signin" component={signIn} />
+          <Route path="/logout" component={logOut} />
+          <Route path="/signup" component={SignOut} />
+          <ProtectedRoute path="/" exact component={DashBoard} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
