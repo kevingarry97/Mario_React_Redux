@@ -21,17 +21,10 @@ export default slice.reducer;
 
 const url = "project";
 
-const headers = {};
-const token = localStorage.getItem("token");
-if (token) {
-  headers["x-auth-token"] = token;
-}
-
 export const loadProjects = () =>
   apiCallBegan({
     url,
     onSuccess: projectReceived.type,
-    headers,
   });
 
 export const addProject = (project) =>
@@ -40,7 +33,6 @@ export const addProject = (project) =>
     method: "post",
     data: project,
     onSuccess: projectCreated.type,
-    headers,
   });
 
 export const getProjects = (state) => state.entities.projects.list;

@@ -24,7 +24,7 @@ class CreateProject extends Form {
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit} className="white">
-          <h5 className="grey-text text-darken-3">Sign In</h5>
+          <h5 className="grey-text text-darken-3">Create Project</h5>
           {this.renderInput("title", "title", "Title")}
           {this.renderTextArea("content", "Project Content")}
           {this.renderButton("btn btn-pink lighten-1 z-depth-0", "Create")}

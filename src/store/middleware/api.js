@@ -5,19 +5,17 @@ import { errorRecieved } from "../errors";
 const api = ({ dispatch }) => (next) => async (action) => {
   if (action.type !== actions.apiCallBegan.type) return next(action);
 
-  const {
-    url,
-    method,
-    data,
-    onSuccess,
-    onError,
-    headers,
-    onStart,
-  } = action.payload;
+  const { url, method, data, onSuccess, onError, onStart } = action.payload;
 
   next(action);
 
   if (onStart) dispatch({ type: onStart });
+
+  const headers = {};
+  const token = localStorage.getItem("token");
+  if (token) {
+    headers["x-auth-token"] = token;
+  }
 
   try {
     const response = await axios.request({
